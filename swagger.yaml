@@ -1,0 +1,307 @@
+---
+openapi: 3.0.1
+info:
+  title: Generated API
+  version: "1.0"
+servers:  
+  -url: http://order-api-inspira-dev.137.116.47.4.nip.io/order-api/
+paths:
+  /appointment/listServicesAffected/{NUM_VISITA}:
+    get:
+      parameters:
+      - name: NUM_VISITA
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListServicesAffectedResponse'
+  /order/{idOrder}:
+    get:
+      parameters:
+      - name: idOrder
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrderByIdResponse'
+components:
+  schemas:
+    GetOrderResponseElement:
+      type: object
+      properties:
+        XA_ServiciosAfectados:
+          type: string
+        XA_ServiciosOT:
+          type: string
+        action:
+          type: string
+        clase:
+          type: string
+        description:
+          type: string
+        detail:
+          type: string
+        exception:
+          type: string
+        id:
+          type: string
+        line:
+          type: string
+        result:
+          type: string
+        serviciosAfectados:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiciosAfectados'
+        step:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+        address:
+          type: string
+        ageAgenda:
+          allOf:
+          - $ref: '#/components/schemas/AppointmentResponse'
+          - xml:
+              name: appointment
+        appointments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppointmentResponse'
+        channel:
+          type: string
+        contractType:
+          type: string
+        customerAccount:
+          type: string
+        descriptionResponse:
+          type: string
+          xml:
+            name: descriptionOrder
+        nameType:
+          type: string
+        orderDate:
+          type: string
+        orderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemsResponse'
+        orderNumber:
+          type: string
+        orderType:
+          type: string
+        owner:
+          type: string
+        requiredDocument:
+          type: boolean
+        state:
+          type: string
+        transactionOTP:
+          type: string
+    OrderItemsResponse:
+      type: object
+      properties:
+        action:
+          type: string
+        appointmentId:
+          type: string
+        characsOrderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CaractOIResponse'
+        offer:
+          type: string
+        orderItemNumber:
+          type: string
+        parent:
+          type: string
+        priceOrderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrecioOIResponse'
+        resourceOrderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecursoOIResponse'
+        state:
+          type: string
+    RecursoOIResponse:
+      type: object
+      properties:
+        characsResourceOrderItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CaractOIResponse'
+        resource:
+          type: string
+    CaractOIResponse:
+      type: object
+      properties:
+        characteristic:
+          type: string
+        value:
+          type: string
+    PrecioOIResponse:
+      type: object
+      properties:
+        amount:
+          type: string
+        name:
+          type: string
+        popId:
+          type: string
+    AppointmentResponse:
+      type: object
+      properties:
+        address:
+          type: string
+        appointment:
+          type: string
+        appointmentId:
+          type: string
+        area:
+          type: string
+        codDane:
+          type: string
+        duracion:
+          type: string
+          xml:
+            name: duration
+        estado:
+          type: string
+          xml:
+            name: state
+        fechaAgenda:
+          type: string
+          xml:
+            name: dateAppointment
+        franja:
+          type: string
+          xml:
+            name: timeSlot
+        node:
+          type: string
+        ordenTOA:
+          type: string
+          xml:
+            name: orderTOA
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppointmentsPropertiesResponse'
+        red:
+          type: string
+        sla:
+          type: string
+          xml:
+            name: SLA
+        subTipoTrabajo:
+          type: string
+          xml:
+            name: STT
+        tipoTrabajo:
+          type: string
+          xml:
+            name: TT
+    AppointmentsPropertiesResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ServiciosAfectados:
+      type: object
+      properties:
+        IdCorto:
+          type: string
+        NombreDelServicio:
+          type: string
+        DescripcionDelServicio:
+          type: string
+        AccionARealizar:
+          type: string
+        NumeroDeTomas:
+          type: string
+        Familia:
+          type: string
+        FamiliaECM:
+          type: string
+        TipoPlan:
+          type: string
+        Lineas:
+          type: string
+        SSWID:
+          type: string
+        LineaMovil:
+          type: string
+        Ubicacion:
+          type: string
+        orderId:
+          type: string
+        parentId:
+          type: string
+    OrderApiResponseElement:
+      type: object
+      properties:
+        XA_ServiciosAfectados:
+          type: string
+        XA_ServiciosOT:
+          type: string
+        action:
+          type: string
+        clase:
+          type: string
+        description:
+          type: string
+        detail:
+          type: string
+        exception:
+          type: string
+        id:
+          type: string
+        line:
+          type: string
+        result:
+          type: string
+        serviciosAfectados:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiciosAfectados'
+        step:
+          type: string
+        type:
+          type: string
+        version:
+          type: string
+    GetOrderByIdResponse:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/OrderApiResponseElement'
+        orderApiResponse:
+          allOf:
+          - $ref: '#/components/schemas/GetOrderResponseElement'
+          - xml:
+              name: response
+        orderResponse:
+          $ref: '#/components/schemas/GetOrderResponseElement'
+    ListServicesAffectedResponse:
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/OrderApiResponseElement'
